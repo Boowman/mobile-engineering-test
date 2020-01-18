@@ -6,23 +6,24 @@ using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using testapp.Core.Services.LocationPrompt;
+using testapp.Core.Services.Property;
 using testapp.Core.Services.Search;
 
 namespace testapp.Core.ViewModels.Properties
 {
-    public class PropertiesViewModel : BaseViewModel<LocationPromptResult>
+    public class PropertiesViewModel : BaseViewModel<PropertyNavigateParams>
     {
         private readonly IMvxNavigationService _navigationService;
         private readonly ISearchService _searchService;
         private readonly IMvxLog _log;
         private readonly IUserDialogs _useDialogs;
-        private LocationPromptResult _locationPrompt;
+        private PropertyNavigateParams _navigationParams;
 
         private bool _isInitialised;
         private int _currentPage;
         private bool _hasNextPage;
         private int _total;
+        private bool _toLet = true;
 
         public IMvxAsyncCommand<SearchPropertyResult> ShowPropertyDetailsAsyncCommand { get; private set; }
         public IMvxAsyncCommand<SearchPropertyResult> LoadMorePropertiesAsyncCommand { get; private set; }
@@ -36,8 +37,8 @@ namespace testapp.Core.ViewModels.Properties
             _useDialogs = userDialogs;
 
             ShowPropertyDetailsAsyncCommand = new MvxAsyncCommand<SearchPropertyResult>(ShowPropertyDetailsAsync);
-            LoadMorePropertiesAsyncCommand = new MvxAsyncCommand<SearchPropertyResult>(LoadMorePropertiesAsync);
-            RefreshPropertiesAsyncCommand = new MvxAsyncCommand(RefreshPropertiesAsync);
+            LoadMorePropertiesAsyncCommand  = new MvxAsyncCommand<SearchPropertyResult>(LoadMorePropertiesAsync);
+            RefreshPropertiesAsyncCommand   = new MvxAsyncCommand(RefreshPropertiesAsync);
         }
 
         private async Task RefreshPropertiesAsync()
@@ -45,7 +46,7 @@ namespace testapp.Core.ViewModels.Properties
             try
             {
                 IsBusy = true;
-                var result = await _searchService.FindProperties(_locationPrompt);
+                var result = await _searchService.FindProperties(_navigationParams.location, _navigationParams.toLet);
                 _currentPage = result.MetaData.PageNumber;
                 _hasNextPage = result.MetaData.HasNextPage;
                 _total = result.MetaData.TotalItemCount;
@@ -115,10 +116,9 @@ namespace testapp.Core.ViewModels.Properties
             }
         }
 
-        public override void Prepare(LocationPromptResult parameter)
+        public override void Prepare(PropertyNavigateParams parameter)
         {
-            _locationPrompt = parameter;
-
+            _navigationParams = parameter;
             PropertiesList = new ObservableCollection<SearchPropertyResult>();
         }
 

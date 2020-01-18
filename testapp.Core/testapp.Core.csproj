@@ -18,12 +18,9 @@
     <Folder Include="ViewModels\Menu\" />
     <Folder Include="ViewModels\Home\" />
     <Folder Include="ViewModels\About\" />
-    <Folder Include="Services\" />
-    <Folder Include="Services\LocationPrompt\" />
     <Folder Include="Services\Middleware\" />
     <Folder Include="Services\Search\" />
     <Folder Include="Services\Base\" />
     <Folder Include="ViewModels\Properties\" />
-    <Folder Include="Services\Property\" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using System;
 using testapp.Core.ViewModels.Home;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,8 +22,8 @@ namespace testapp.UI.Pages
 
             if (Application.Current.MainPage is NavigationPage navigationPage)
             {
-                navigationPage.BarTextColor = Color.White;
-                navigationPage.BarBackgroundColor = (Color)Application.Current.Resources["Plum"];
+                navigationPage.BarTextColor         = Color.White;
+                navigationPage.BarBackgroundColor   = (Color)Application.Current.Resources["Plum"];
             }
         }
     }

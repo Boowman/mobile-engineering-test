@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using testapp.Core.Services.LocationPrompt;
+using testapp.Core.Services.Property;
 using testapp.Core.ViewModels.Properties;
+using Xamarin.Forms;
 
 namespace testapp.Core.ViewModels.Home
 {
@@ -19,14 +22,34 @@ namespace testapp.Core.ViewModels.Home
 
         public IMvxAsyncCommand SearchCommandAsync { get; private set; }
 
+        public ICommand SearchToBuy { get; private set; }
+        public ICommand SearchToLet { get; private set; }
+
         public HomeViewModel (IMvxNavigationService navigationService, ILocationPromptService locationPromptService, IMvxLog log, IUserDialogs userDialogs)
         {
-            _navigationService = navigationService;
-            _locationPromptService = locationPromptService;
-            _log = log;
-            _useDialogs = userDialogs;
+            _navigationService      = navigationService;
+            _locationPromptService  = locationPromptService;
+            _log                    = log;
+            _useDialogs             = userDialogs;
 
-            SearchCommandAsync = new MvxAsyncCommand(SearchPropertiesAsync);
+            SearchCommandAsync  = new MvxAsyncCommand(SearchPropertiesAsync);
+
+            SearchToBuy = new Command(TryingToBuy);
+            SearchToLet = new Command(TryingToLet);
+        }
+
+        private void TryingToBuy()
+        {
+            Console.WriteLine($"Trying To Let - {ToLet}");
+            ToLet = false;
+            Console.WriteLine($"Trying To Let - {ToLet}");
+        }
+
+        private void TryingToLet()
+        {
+            Console.WriteLine($"Trying To Let - {ToLet}");
+            ToLet = true;
+            Console.WriteLine($"Trying To Let - {ToLet}");
         }
 
         private async Task SearchPropertiesAsync()
@@ -41,7 +64,10 @@ namespace testapp.Core.ViewModels.Home
             {
                 IsBusy = true;
 
-                var locationDetails = await _locationPromptService.GetLocationDetails(Location);
+                var locationDetails                     = await _locationPromptService.GetLocationDetails(Location);
+                PropertyNavigateParams navigateParams   = new PropertyNavigateParams();
+                navigateParams.location = locationDetails.First();
+                navigateParams.toLet = ToLet;
 
                 if (locationDetails.Any() == false)
                 {
@@ -49,7 +75,7 @@ namespace testapp.Core.ViewModels.Home
                     return;
                 }
 
-                await _navigationService.Navigate<PropertiesViewModel, LocationPromptResult>(locationDetails.First());
+                await _navigationService.Navigate<PropertiesViewModel, PropertyNavigateParams>(navigateParams);
             }
             catch (Exception exc)
             {
@@ -76,6 +102,14 @@ namespace testapp.Core.ViewModels.Home
         {
             get => _location;
             set => SetProperty(ref _location, value);
+        }
+
+
+        private bool _toLet;
+        public bool ToLet
+        {
+            get => _toLet;
+            set => SetProperty(ref _toLet, value);
         }
     }
 }

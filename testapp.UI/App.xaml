@@ -42,10 +42,28 @@
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryButtonColor}" />
                 <Setter Property="HeightRequest" Value="40" />
-            </Style>            
+            </Style>
+
+            <Style x:Key="DefaultButton" TargetType="Button">
+
+                <Setter Property="TextColor"        Value="{StaticResource BrandGrey}" />
+                <Setter Property="BorderWidth"      Value="1"/>
+                <Setter Property="BorderColor"      Value="{StaticResource BrandBorderColor}" />
+                <Setter Property="BackgroundColor"  Value="White" />
+                <Setter Property="HeightRequest"    Value="40" />
+            </Style>
+            
+            <Style x:Key="SelectedDefaultButton" TargetType="Button">
+
+                <Setter Property="TextColor"        Value="White" />
+                <Setter Property="BorderWidth"      Value="1"/>
+                <Setter Property="BorderColor"      Value="{StaticResource BrandPurple}" />
+                <Setter Property="BackgroundColor"  Value="{StaticResource BrandPurple}" />
+                <Setter Property="HeightRequest"    Value="40" />
+            </Style>
             
             <Style x:Key="BaseButton" TargetType="Button">
-                
+
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="CornerRadius" Value="2" />
                 <Setter Property="FontAttributes" Value="Bold" />
