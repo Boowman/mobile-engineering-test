@@ -102,35 +102,93 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Resources\Images.xcassets\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-76x76%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-29x29%401x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-40x40%401x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-20x20%401x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-83.5x83.5%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-20x20%403x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\ItunesArtwork%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-20x20%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-29x29%403x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-40x40%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-60x60%403x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-60x60%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-76x76%401x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-40x40%403x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-29x29%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\SplashLogo.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\SplashLogo.imageset\SplashLogo%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\SplashLogo.imageset\SplashLogo%403x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\PBLogo.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\PBLogo.imageset\Purplebricks_logo-Hrz-RGB-White%403x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\PBLogo.imageset\Purplebricks_logo-Hrz-RGB-White%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\Information.imageset\Information.png" />
-    <ImageAsset Include="Resources\Images.xcassets\Information.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\Information.imageset\Information%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\Home.imageset\Home%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\Home.imageset\Home.png" />
-    <ImageAsset Include="Resources\Images.xcassets\Home.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-76x76%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-29x29%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-40x40%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-20x20%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-83.5x83.5%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-20x20%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\ItunesArtwork%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-20x20%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-29x29%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-40x40%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-60x60%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-60x60%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-76x76%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-40x40%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-App-29x29%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\SplashLogo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\SplashLogo.imageset\SplashLogo%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\SplashLogo.imageset\SplashLogo%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\PBLogo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\PBLogo.imageset\Purplebricks_logo-Hrz-RGB-White%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\PBLogo.imageset\Purplebricks_logo-Hrz-RGB-White%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\Information.imageset\Information.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\Information.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\Information.imageset\Information%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\Home.imageset\Home%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\Home.imageset\Home.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\Home.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Images.xcassets\About.imageset\" />
