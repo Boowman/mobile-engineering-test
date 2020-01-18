@@ -46,10 +46,10 @@ namespace testapp.Core.ViewModels.Properties
             try
             {
                 IsBusy = true;
-                var result = await _searchService.FindProperties(_navigationParams.location, _navigationParams.toLet);
-                _currentPage = result.MetaData.PageNumber;
-                _hasNextPage = result.MetaData.HasNextPage;
-                _total = result.MetaData.TotalItemCount;
+                var result      = await _searchService.FindProperties(_navigationParams.location, _navigationParams.toLet);
+                _currentPage    = result.MetaData.PageNumber;
+                _hasNextPage    = result.MetaData.HasNextPage;
+                _total          = result.MetaData.TotalItemCount;
 
                 PropertiesList.Clear();
                 foreach (var property in result.Properties)
@@ -83,7 +83,34 @@ namespace testapp.Core.ViewModels.Properties
 
             if (PropertiesList[PropertiesList.Count - 1] == searchPropertyResult)
             {
-                //Load more properties if any
+                if(_hasNextPage)
+                {
+                    try
+                    {
+                        IsBusy = true;
+                        var result      = await _searchService.FindProperties(_navigationParams.location, _navigationParams.toLet, _currentPage + 1);
+                        _currentPage    = result.MetaData.PageNumber;
+                        _hasNextPage    = result.MetaData.HasNextPage;
+                        _total          = result.MetaData.TotalItemCount;
+
+                        foreach (var property in result.Properties)
+                        {
+                            PropertiesList.Add(property);
+                        }
+
+                        UpdateDisplyingDescription();
+                    }
+                    catch (Exception exc)
+                    {
+                        _log.ErrorException("An error has occurred while trying to get more results", exc);
+                        await _useDialogs.AlertAsync("An error has occurred. Please try again.");
+
+                    }
+                    finally
+                    {
+                        IsBusy = false;
+                    }
+                }      
             }
         }
 

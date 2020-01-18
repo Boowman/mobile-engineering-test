@@ -26,9 +26,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
+
             <StackLayout Grid.Row="0" 
                          Spacing="0"
+                         Margin="0, 0, 0, -5"
                          BackgroundColor="White">
 
                 <StackLayout Padding="15,15,15,10"
@@ -46,11 +47,9 @@
                 <BoxView HeightRequest="1"
                          BackgroundColor="{StaticResource BrandDarkPurple}" />
             </StackLayout>
-            
-        
             <StackLayout Grid.Row="1">
-                
                 <ListView x:Name="MenuList" 
+                          Margin="0, 0"
                           ItemsSource="{Binding PropertiesList}" 
                           SelectedItem="{Binding SelectedProperty, Mode=TwoWay}"
                           IsPullToRefreshEnabled="{Binding IsBusy, Converter={x:Static converters:InverseBooleanConverter.Instance}}"
@@ -59,61 +58,61 @@
                           SeparatorVisibility="None"
                           HasUnevenRows="true"   
                           RefreshCommand="{Binding RefreshPropertiesAsyncCommand}">
-                    
+
                     <ListView.Behaviors>
                         <behaviors:EventToCommandBehavior EventName="ItemSelected" 
                                                           Command="{Binding ShowPropertyDetailsAsyncCommand}"
                                                           Converter="{x:Static converters:SelectedItemEventArgsToSelectedItemConverter.Instance}">
                         </behaviors:EventToCommandBehavior>
-                        
+
                         <behaviors:EventToCommandBehavior EventName="ItemAppearing" 
                                                           Command="{Binding LoadMorePropertiesAsyncCommand}"
                                                           Converter="{x:Static converters:ItemAppearingEventArgsToItemConverter.Instance}">
                         </behaviors:EventToCommandBehavior>
-                    </ListView.Behaviors>               
-                    
+                    </ListView.Behaviors>
+
                     <ListView.ItemTemplate>
-                        <DataTemplate>                        
+                        <DataTemplate>
                             <ViewCell>
                                 <StackLayout Padding="15, 15, 15, 5" 
                                              HorizontalOptions="FillAndExpand" 
                                              VerticalOptions="FillAndExpand"
                                              BackgroundColor="White">
-                                    
+
                                     <StackLayout Padding="1"
                                                  HorizontalOptions="FillAndExpand" 
                                                  VerticalOptions="FillAndExpand"                                         
                                                  BackgroundColor="{StaticResource BrandMediumLightGrey}">
-                                        
+
                                         <Grid ColumnSpacing="0" 
                                               BackgroundColor="White">
-                                            
+
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"/>
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                            
+
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>   
-                                            
+                                            </Grid.ColumnDefinitions>
+
                                             <StackLayout Grid.Row="0"
                                                          Spacing="0"
                                                          Margin="0"
                                                          Padding="0"
                                                          HorizontalOptions="FillAndExpand"
                                                          VerticalOptions="FillAndExpand">
-                                        
+
                                                 <Image Source="{Binding LargeImage}"
                                                        Aspect="AspectFill"
                                                        Margin="2" 
                                                        BackgroundColor="White"
                                                        HeightRequest="200"
                                                        HorizontalOptions="FillAndExpand"
-                                                       VerticalOptions="FillAndExpand"/>                                    
+                                                       VerticalOptions="FillAndExpand"/>
                                             </StackLayout>
-                                            
+
                                             <StackLayout Grid.Row="1" 
                                                          HorizontalOptions="FillAndExpand" 
                                                          Spacing="0"
@@ -131,22 +130,22 @@
                                                     </StackLayout>
                                                 </StackLayout>
                                             </StackLayout>
-                                            
+
                                             <StackLayout Grid.Row="2" 
                                                          HorizontalOptions="FillAndExpand" 
                                                          Spacing="0"
                                                          Margin="15,0,0,0"
-                                                         Padding="2">                                
-                                                
+                                                         Padding="2">
+
                                                 <StackLayout Orientation="Horizontal"
                                                              Padding="0,5">
-                                                    
-                                                   <StackLayout Margin="0,0,0,-2">
-                                                        
+
+                                                    <StackLayout Margin="0,0,0,-2">
+
                                                         <Label FontSize="Large" 
                                                                Text="{Binding FormattedMarketPrice}" 
                                                                TextColor="{StaticResource BrandPurple}" />
-                                                   </StackLayout>
+                                                    </StackLayout>
                                                 </StackLayout>
                                             </StackLayout>
                                         </Grid>
@@ -155,9 +154,16 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    
-                </ListView>            
-                
+
+                </ListView>
+                <StackLayout IsVisible="{Binding IsBusy}"
+                         VerticalOptions="EndAndExpand">
+                    <StackLayout HorizontalOptions="Center" 
+                             VerticalOptions="Center">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                                           Color="{StaticResource Aubergine}" />
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>        
         </Grid>
     </ContentPage.Content> 
