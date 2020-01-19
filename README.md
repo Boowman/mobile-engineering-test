@@ -1,79 +1,67 @@
-# Purplebricks Moble Application Developer Test
+# Objective 6
 
-The aim of this test is to give us an idea about how you approach the development and maintenance of mobil applications. You will work from a GitHub repository which contains an existing mobile application. The test is based on very simple search properties based application that uses our live endpoints. 
+## Objective 2 - 
+I have chosen not to use a Picker as when I intially started reading the task my mind jumped to the style I have added.
 
-The test application is using Xamarin.Forms and solution was created in Visual Studio 2019. It contains separate Android and iOS projects and you are encouraged to work on Android solution if you don't have access to MacOS. Otherwise feel free to work on both projects. Generally the changes should be done in Core and UI projects and there should be no need to modify platform specific projects other than need to set as start up project.
+> Issue
 
-The code is using MVVM architectural pattern backed by MvvmCross framework. If you are not familiar with the framework you should be able to find help at [www.mvvmcross.com](https://www.mvvmcross.com/documentation/) 
+I wanted to use DynamicResources and change the style when the property changes, the problem is in HomePage.xaml.cs I didn't know how to get the ToLet variable from HomeViewModel.cs
 
-Feel free to accomplish any number of the following test objectives. They vary in difficulty level and time that will be required to spend on them. Achieving all the goals will be certainly acknowledged, but it is not required.
+> Solution
 
-If you run out of time or have no idea on how to solve an objective, please commit the code you have added to this point and include some notes on why you were not able to finish an objective you chose to work on.
+I had to use 2 ICommands as I had to hide 2 buttons based on the value, if I could've simply changed the style I would've done the following in the `Command Command(() => ToLet = !ToLet)`
 
-## Test Objectives
+This has taken the longest time simply because I wasn't sure what is the best approach to pass multiple parameters through `Navigate` for the `_toLet` variable. In the end I decided to just make a new class that has both the `LocationResult` and `ToLet`
 
-### Objective 1 (Easy) - Allow visiting Purplebricks website from About screen
+## Objective 5 -
 
-In the side menu you will find an option to land on About screen. The button at the bottom of the screen is currently not doing anything. Modify the code to allow openning "http://www.purplebricks.com" in device preffered browser.
+> Issue
 
-**Tips:** 
-* The page UI code is define in AboutPage.xaml and related view model in AboutViewModel.cs
-* Please note that XAML file is already containing suggested binding
-* Consider using (Device.OpenUri)[https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.device.openuri?view=xamarin-forms] method
+The one thing missing is the CarouselView/CollectionView as I had the same issue with both of them.
+Reading the documentation for CarouselView because it is still in Preview I have to set the flag to allow experimental components to be used, when I tried that I got the following error: https://cdn.discordapp.com/attachments/268177342168301568/668210952289910821/unknown.png [CollectionView]
+https://cdn.discordapp.com/attachments/268177342168301568/668211747768762368/unknown.png [CarouselView] 
 
-### Objective 2 (Moderate) - Extend Home screen to include option to search for properties to let
+I have also tried the following code:
+```
+Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
+Xamarin.Forms.Forms.Init(this, bundle); // Initializing the Actual Form but with no luck
+Xamarin.Essentials.Platform.Init(this, bundle);
+```
 
-Currently app searches only for the properties available to sell. Please modify the page and add some option to select between For Sale and To Let options. 
+> Tried the following
 
-**Tips**
-* The page UI code is define in HomePage.xaml and related view model in HomeViewModel.cs
-* SearchService class method called FindProperties already contains boolean parameter that can be used to alternate between search results
-* Suggested component is (Picker)[https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/picker/], but feel free to come up with your own solution
+- Clean and Rebuild Solution.
+- Update the packages.
+- Tried the initial repo with just the `Forms Init` and `Set Flags` but I was getting the same error.
+- Googled the issues for several hours but couldn't find any solutions.
+- Duplicated the project and tried the above code and update the package.
+- Tried discord and gitter but no luck there either.
 
-### Objective 3 (Moderate) - Extend card view of the property search result to include property address
+> Duplicating the project worked `Once`
 
-Results of the search are displayed in the form of list view using PropertiesPage class. Currently card view of each element is just displaying an Image and property price. Extend Properties page card view to include property address information.
+So I duplicated the project added the above code and I was not getting the error, I was able to add the CarouselView into the XAML code and it was working, after a restart of VS 2019 it stopped working.
+This makes me belive there might be something wrong with my VS or System as it doesn't make much sense, unfortunatelly I don't have another PC/Laptop to test it on.
 
-**Tips**
-* The page UI code is defined in PropertiesPage.xaml and related view model in PropertiesViewModel.cs
-* The address details can be combined from properties of SearchPropertyResult class (Address, Postcode) 
+> Solutions
 
-### Objective 4 (Difficult) - Allow for more property results to be fetched from endpoint
+- Create a ListView and rotate it 270 Deg as it doesn't allow Horizontal Orientation, then just rotate the children within the list.
+- Download a Carousel package and try to use that.
 
-Currently only 10 properties are displayed as result of a search. Modify the relevant code to allow fetching more data as user is scrolling down. Adding a visible loading indicator while fetching new properties would be nice to have (ex.: ActivityIndicator in ListView Footer). 
+> Changes
 
-**Tips**
-* The page UI code is defined in PropertiesPage.xaml and related view model in PropertiesViewModel.cs
-* Your start point for fetching more data should be in LoadMorePropertiesAsync method of PropertiesViewModel class
-* SearchService class method called FindProperties already contains parameter (pageNumber) that should help with pagination
-* Check RefreshPropertiesAsync method of PropertiesViewModel for details on how to read Metadata information 
+Floor Plan and StarPoints have not been placed on a new page or activity (if this is what you meant by page) as I thought it was better to just keep it on the same page. I did look at the purple bricks mobile app in the browser and copied some things.
 
-### Objective 5 (Difficult) - Design and implement Property Details page
+## Goods & Bads
 
-When taping on any of the property card views in the search results list view a new page is opened that should allow displaying more detailed information about the property. Stub model and UI classes have been already added. The service PropertyDetailsService.cs is also implemented and tied to view model. 
-The details displayed on the page are of your choice, however should be limited to those available from PropertyDetailsResult class. You don't have to visualise all the properties. Consider displaying most important ones. Feel free to visit www.purplebricks.co.uk to see what sort of data is displayed when selecting property details.
+> Objective 1, is really simple so I don't think mentioning `Device.OpenUri` is needed.
 
-**Tips**
-* The page UI code is defined in PropertyDetailsPage.xaml and related view model in PropertyDetailsViewModel.cs
-* For displaying images consider using [CarouselView](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/carouselview/)
-* Some of the data like Floorplan or StarPoints can be displaying using separate pages (simply add new Pages and ViewModels in respective projects)
+> Objective 4, maybe giving some api returns example using different parameters or giving us access to some demo api to mess around with.
 
-### Objective 6 (Moderate) - Write a short review of the existing sample codebase.
+> Objective 5, again maybe giving us a full `JSON Object` example of a property for visualization purposes, it is not needed as the class `PropertyDetailsResult` has all the info in there but just a thought. 
 
-Let us know what you think is good or bad about it. Feel free to fix any problems and commit these changes to the solution.
+## Questions
+MenuViewModels - Is there a reason why you are delaying the task by 100 milliseconds on Android? I would assume is because you are waiting to load something but I doubt its that since I am not seeing anything in the code plus is only for Android and not iOS.
 
-#### Deliverables
-
-Your submission should be delivered in as a Visual Studio solution compatible with Visual Studio 2019. The solution should compile. 
-
-We would prefer that the solution is delivered via GitHub. If you are not able to fork this original repository publically then please fork to a private repository and then provide us with the zip file from the download option in GitHub.
-
-Good luck!
-
-## FAQs
-
-* Should I show my commit history?
-    * Showing your commit history is recommended so that we can see your approach.
-
-* How long should I spend working on the assignment?
-    * You can take as long as you need to complete the assignment. But do remember that this is throwaway code and the aim is to demonstrate your approach rather than build a complete system.
+###### Highlight
+Not sure if it matters how long I have spent working on these, but the time difference between commits do not reflect the actual time spent on the objectives.
+Out of everything I have probably spent the most time trying to fix the `CarouselView/CollectionView` issues which I still haven't fixed (around 6-8 hrs)
