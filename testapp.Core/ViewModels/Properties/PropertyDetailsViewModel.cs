@@ -16,7 +16,6 @@ namespace testapp.Core.ViewModels.Properties
 
         private int _propertyId;
         private bool _isInitialised;
-        private PropertyDetailsResult _propertyDetails;
 
         public PropertyDetailsViewModel(IMvxNavigationService navigationService, IPropertyDetailsService propertyDetailsService, IMvxLog log, IUserDialogs userDialogs)
         {
@@ -42,7 +41,7 @@ namespace testapp.Core.ViewModels.Properties
                 IsBusy = true;
 
                 await Task.Delay(500);
-                _propertyDetails = await _propertyDetailsService.FetchPropertyDetails(_propertyId);
+                PropertyDetails = await _propertyDetailsService.FetchPropertyDetails(_propertyId);
 
                 _isInitialised = true;
 
@@ -64,6 +63,13 @@ namespace testapp.Core.ViewModels.Properties
         {
             get => _isBusy;
             set => SetProperty(ref _isBusy, value);
+        }
+
+        private PropertyDetailsResult _propertyDetails;
+        public PropertyDetailsResult PropertyDetails
+        {
+            get => _propertyDetails;
+            set => SetProperty(ref _propertyDetails, value);
         }
     }
 }

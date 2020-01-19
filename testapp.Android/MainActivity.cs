@@ -22,6 +22,9 @@ namespace testapp.Droid
 
             base.OnCreate(bundle);
 
+            //Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
+            //Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
+            //Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
         }
 
