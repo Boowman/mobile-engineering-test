@@ -15,7 +15,7 @@ This has taken the longest time simply because I wasn't sure what is the best ap
 
 ## Objective 5 -
 
-> Issue
+> Issue (VS 2019 Preview)
 
 The one thing missing is the CarouselView/CollectionView as I had the same issue with both of them.
 Reading the documentation for CarouselView because it is still in Preview I have to set the flag to allow experimental components to be used, when I tried that I got the following error: https://cdn.discordapp.com/attachments/268177342168301568/668210952289910821/unknown.png [CollectionView]
